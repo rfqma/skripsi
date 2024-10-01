@@ -10,17 +10,13 @@ def load_model(file_path):
   with open(file_path, 'rb') as file:
     return pickle.load(file)
 
+selector = load_model('./models/ind_selector_model.pkl')
 vectorizer = load_model('./models/ind_vectorizer_model.pkl')
 inset_knn1 = load_model('./models/ind_inset_knn1_model.pkl')
 inset_knn3 = load_model('./models/ind_inset_knn3_model.pkl')
 inset_knn5 = load_model('./models/ind_inset_knn5_model.pkl')
 inset_knn7 = load_model('./models/ind_inset_knn7_model.pkl')
 inset_knn9 = load_model('./models/ind_inset_knn9_model.pkl')
-sentistrength_knn1 = load_model('./models/ind_sentistrength_knn1_model.pkl')
-sentistrength_knn3 = load_model('./models/ind_sentistrength_knn3_model.pkl')
-sentistrength_knn5 = load_model('./models/ind_sentistrength_knn5_model.pkl')
-sentistrength_knn7 = load_model('./models/ind_sentistrength_knn7_model.pkl')
-sentistrength_knn9 = load_model('./models/ind_sentistrength_knn9_model.pkl')
 
 SLANG_DICTIONARY_FILE_NAME_1 = "kamus_slang_1.csv"
 SLANG_DICTIONARY_FILE_PATH_1 = f"dictionaries/{SLANG_DICTIONARY_FILE_NAME_1}"
@@ -37,14 +33,69 @@ SW_DICTIONARY_FILE_NAME_1 = "kamus_stopwords_1.csv"
 SW_DICTIONARY_FILE_PATH_1 = f"dictionaries/{SW_DICTIONARY_FILE_NAME_1}"
 DATA_FRAME_SW_DICTIONARY_1 = pd.read_csv(SW_DICTIONARY_FILE_PATH_1)
 
-def slang_dict_integration(text):
+NEGASI_DICTIONARY_FILE_NAME_1 = "negasi.csv"
+NEGASI_DICTIONARY_FILE_PATH_1 = f"dictionaries/{NEGASI_DICTIONARY_FILE_NAME_1}"
+DATA_FRAME_NEGASI_DICTIONARY_1 = pd.read_csv(NEGASI_DICTIONARY_FILE_PATH_1)
+
+ANTONYM_DICTIONARY_FILE_NAME_1 = "antonim_bahasa_indonesia.csv"
+ANTONYM_DICTIONARY_FILE_PATH_1 = f"dictionaries/{ANTONYM_DICTIONARY_FILE_NAME_1}"
+DATA_FRAME_ANTONYM_DICTIONARY_1 = pd.read_csv(ANTONYM_DICTIONARY_FILE_PATH_1)
+
+ANTONYM_DICTIONARY_1 = pd.Series(DATA_FRAME_ANTONYM_DICTIONARY_1.antonim.values, index=DATA_FRAME_ANTONYM_DICTIONARY_1.word).to_dict()
+
+def underscore_negation(text):
+  words = text.split()
+  negation_words = set(DATA_FRAME_NEGASI_DICTIONARY_1["negasi"].values)
+  skip_next = False
+  new_words = []
+    
+  for i in  range(len(words)):
+    if skip_next:
+      skip_next = False
+      continue
+    if words[i] in negation_words and i < len(words) - 1:
+      new_words.append(words[i] + "_" + words[i+1])
+      skip_next = True
+    else:
+      new_words.append(words[i])
+
+  return " ".join(new_words)
+
+def swap_antonyms(text):
+  words = text.split()
+  antonym_dict = dict(zip(DATA_FRAME_ANTONYM_DICTIONARY_1["word"], DATA_FRAME_ANTONYM_DICTIONARY_1["antonim"]))
+  new_words = []
+    
+  for word in words:
+    if "_" in word:
+      negation, next_word = word.split("_", 1)
+      if next_word in antonym_dict:
+        new_words.append(antonym_dict[next_word])
+      else:
+        new_words.append(word)
+    else:
+      new_words.append(word)
+  
+  return " ".join(new_words)
+
+def slang_dict_integration_kamus_1(text):
   words = text.split()
   standardization_words = []
 
   for word in words:
     if word in SLANG_DICTIONARY_1:
       standardization_words.append(SLANG_DICTIONARY_1[word])
-    elif word in SLANG_DICTIONARY_2:
+    else:
+      standardization_words.append(word)
+
+  return " ".join(standardization_words)
+
+def slang_dict_integration_kamus_2(text):
+  words = text.split()
+  standardization_words = []
+
+  for word in words:
+    if word in SLANG_DICTIONARY_2:
       standardization_words.append(SLANG_DICTIONARY_2[word])
     else:
       standardization_words.append(word)
@@ -109,7 +160,7 @@ st.write("Analisis Reaksi Publik Terhadap Pemindahan Ibu Kota Negara Menggunakan
 st.text('Masukkan kalimat terkait topik relokasi ibu kota dan dapatkan prediksi sentimennya')
 
 
-model_selection = st.selectbox('Pilih model kamus lexicon dan nilai K', ['k1-InSet', 'k3-InSet', 'k5-InSet', 'k7-InSet', 'k9-InSet', 'k1-sentistrength_id', 'k3-sentistrength_id', 'k5-sentistrength_id', 'k7-sentistrength_id', 'k9-sentistrength_id'])
+model_selection = st.selectbox('Pilih model berdasarkan nilai K', ['k1-InSet', 'k3-InSet', 'k5-InSet', 'k7-InSet', 'k9-InSet'])
 
 if model_selection == 'k1-InSet':
   sentiment_model = inset_knn1
@@ -121,35 +172,34 @@ elif model_selection == 'k7-InSet':
   sentiment_model = inset_knn7
 elif model_selection == 'k9-InSet':
   sentiment_model = inset_knn9
-elif model_selection == 'k1-sentistrength_id':
-  sentiment_model = sentistrength_knn1
-elif model_selection == 'k3-sentistrength_id':
-    sentiment_model = sentistrength_knn3
-elif model_selection == 'k5-sentistrength_id':
-   sentiment_model = sentistrength_knn5
-elif model_selection == 'k7-sentistrength_id':
-   sentiment_model = sentistrength_knn7
-elif model_selection == 'k9-sentistrength_id':
-    sentiment_model = sentistrength_knn9
 
 
 user_input = st.text_area('Masukkan kalimat di sini:')
 
 if st.button('Prediksi Sentimen'):
   if user_input:
-    # clean, standardize, translate, remove stopwords, stem text
+    # clean, negation handling, standardize, translate, remove stopwords, stem text
     cleaned_text = clean_text(user_input)
-    standardized_text = slang_dict_integration(cleaned_text)
-    stopwords_removed_text = drop_stopwords(standardized_text)
+    st.write(f'cleaned_text: **{cleaned_text}**')
+    standardized_text = slang_dict_integration_kamus_1(cleaned_text)
+    standardized_text = slang_dict_integration_kamus_2(standardized_text)
+    st.write(f'standardized_text: **{standardized_text}**')
+    underscore_negation_text = underscore_negation(standardized_text)
+    st.write(f'underscore_negation_text: **{underscore_negation_text}**')
+    swap_negation_text = swap_antonyms(underscore_negation_text)
+    st.write(f'swap_negation_text: **{swap_negation_text}**')
+    stopwords_removed_text = drop_stopwords(swap_negation_text)
     after_stemming_text = stem_indonesian_text(stopwords_removed_text)
     st.write(f'teks yang sudah diproses: **{after_stemming_text}**')
 
     # vectorize text
     vectorized_text = vectorizer.transform([after_stemming_text])
+    selected_text = selector.transform(vectorized_text)
     st.write(f'teks yang sudah divektorisasi: **{vectorized_text}**')
+    st.write(f'teks yang sudah melalui seleksi fitur: **{selected_text}**')
 
     # predict sentiment
-    sentiment = sentiment_model.predict(vectorized_text)[0]
+    sentiment = sentiment_model.predict(selected_text)[0]
 
     st.write(f'Sentimen dari kalimat yang dimasukkan: **{sentiment}**')
   else:

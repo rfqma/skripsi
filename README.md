@@ -9,7 +9,7 @@
   - Data crawling was done at 21 August 2024 with keywords: _ibu_kota_baru_, _ibu_kota_nusantara_, _ibu_kota_pindah_, _ikn_, _pemindahan_ibu_kota_.
   - Some X Search Queries like: _lang:id_, _since:2023-01-01_.
   - Also the crawler use `LATEST` tab from X.
-- `slang & stopwords`
+- `slang, stopwords, negation, etc`
   - [/dictionaries](https://github.com/rfqma/skripsi/tree/master/dictionaries)
 - `Custom Lexicon`
   - [/dictionaries/lexicon](https://github.com/rfqma/skripsi/tree/master/dictionaries/lexicon)
@@ -72,13 +72,13 @@ pip freeze
 3. [ind|eng]-preprocess.ipynb
 4. [ind|eng]-sentiment.ipynb
 5. [ind|eng]-knn-[inset|sentistrength].ipynb
-6. [ind|eng]-streamlit.py
+6. [ind|eng]-streamlit-[inset|sentistrength].py
 ```
 
 - run streamlit
 
 ```bash
-streamlit run [ind|eng]-streamlit.py
+streamlit run [ind|eng]-streamlit-[inset|sentistrength].py
 ```
 
 # NOTES!!
