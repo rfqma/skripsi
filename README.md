@@ -1,6 +1,6 @@
 # Analisis Reaksi Publik Terhadap Pemindahan Ibu Kota Negara Menggunakan Metode Lexicon Based dan KNN
 
-> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of algorithm classifiers K-Nearest Neighbor (KNN), Feature Selection Term Frequency Inverse Document (TF-IDF), and also using a Lexicon-based approach for labeling data as positive, negative, or netral sentiment.
+> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of algorithm classifiers K-Nearest Neighbor (KNN), Feature Extraction Term Frequency-Inverse Document Frequency (TF-IDF), Data Balancing (SMOTE), Feature Selection (Chi-Square) and also using a Lexicon-based approach for labeling data as positive, negative, or netral sentiment.
 
 # Input
 
