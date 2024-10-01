@@ -10,14 +10,15 @@
   - Some X Search Queries like: _lang:id_, _since:2023-01-01_.
   - Also the crawler use `LATEST` tab from X.
 - `slang & stopwords`
-  - [Colloquial Indonesian Lexicon](https://github.com/nasalsabila/kamus-alay)
-  - [https://github.com/MreRes/sentiment-analysis-knn/blob/main/kbba.txt](https://github.com/MreRes/sentiment-analysis-knn/blob/main/kbba.txt)
-  - [ID-Stopwords](https://github.com/stopwords-iso/stopwords-id)
-- `Lexicon`
-  - [InSet](https://github.com/fajri91/InSet)
-  - [sentistrength_id](https://github.com/masdevid/sentistrength_id)
+  - [/dictionaries](https://github.com/rfqma/skripsi/tree/master/dictionaries)
+- `Custom Lexicon`
+  - [/dictionaries/lexicon](https://github.com/rfqma/skripsi/tree/master/dictionaries/lexicon)
 - `Ekstraksi Fitur`
   - `TF-IDF`
+- `Data Balancer`
+  - `SMOTE`
+- `Feature Selection`
+  - `Chi-Square`
 - `Classifier Algorithm`
   - `K-Nearest Neighbor (KNN)`
 - `Evaluation`
@@ -42,7 +43,7 @@
 > - Save it to _`scraper/twikit_cookies.json`_.
 > - Run _`scraper/scraper.py`_.
 
-## Prerequisites
+## Prerequisites On Machine
 
 - `python`
 - `pip`
@@ -63,14 +64,14 @@ pip install -r requirements.txt
 pip freeze
 ```
 
-- Usage
+- Usage Order
 
 ```
 1. scraper/cookies.py
 2. scraper/scraper.py
 3. [ind|eng]-preprocess.ipynb
 4. [ind|eng]-sentiment.ipynb
-5. [ind|eng]-knn.ipynb
+5. [ind|eng]-knn-[inset|sentistrength].ipynb
 6. [ind|eng]-streamlit.py
 ```
 
