@@ -7,11 +7,11 @@ import time
 
 MIN_TWEETS = 1000
 
-QUERY_FIRST = 'ikn lang:id since:2023-01-01'
-QUERY_SECOND = 'ibu kota baru lang:id since:2023-01-01'
-QUERY_THIRD = 'ibu kota nusantara lang:id since:2023-01-01'
-QUERY_FOURTH = 'ibu kota pindah lang:id since:2023-01-01'
-QUERY_FIFTH = 'pemindahan ibu kota lang:id since:2023-01-01'
+QUERY_FIRST = 'ikn lang:id since:2023-10-01'
+QUERY_SECOND = 'ibu kota baru since:2023-10-01'
+QUERY_THIRD = 'ibu kota nusantara since:2023-10-01'
+QUERY_FOURTH = 'ibu kota pindah since:2023-10-01'
+QUERY_FIFTH = 'pemindahan ibu kota since:2023-10-01'
 CURRENT_QUERY = QUERY_FIFTH
 
 FILE_NAME_FIRST = 'ikn.csv'
