@@ -1,2 +1,7 @@
 scraper/raw_cookies.json
 scraper/twikit_cookies.json
+venv/
+models/fastText/cc.id.300.bin
+models/fastText/ft_gensim.model*
+models/fastText/ft_small.model
+models/fastText/fasttext-id-mini

@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import compress_fasttext
+import numpy as np
 import pickle
 import re
 from nltk.corpus import stopwords
@@ -10,22 +12,17 @@ def load_model(file_path):
   with open(file_path, 'rb') as file:
     return pickle.load(file)
 
-selector = load_model('./models/ind_selector_model.pkl')
-vectorizer = load_model('./models/ind_vectorizer_model.pkl')
-inset_knn1 = load_model('./models/ind_inset_knn1_model.pkl')
-inset_knn3 = load_model('./models/ind_inset_knn3_model.pkl')
-inset_knn5 = load_model('./models/ind_inset_knn5_model.pkl')
-inset_knn7 = load_model('./models/ind_inset_knn7_model.pkl')
-inset_knn9 = load_model('./models/ind_inset_knn9_model.pkl')
+ft_model = compress_fasttext.models.CompressedFastTextKeyedVectors.load("models/fastText/ft_small.model")
+selector_model = load_model('./models/chi2/selector_model.pkl')
+knn_model = load_model('./models/8020/knn1_8020_model.pkl')
+###########################################################################################################
 
 SLANG_DICTIONARY_FILE_NAME_1 = "kamus_slang_1.csv"
 SLANG_DICTIONARY_FILE_PATH_1 = f"dictionaries/{SLANG_DICTIONARY_FILE_NAME_1}"
 DATA_FRAME_SLANG_DICTIONARY_1 = pd.read_csv(SLANG_DICTIONARY_FILE_PATH_1)
-
 SLANG_DICTIONARY_FILE_NAME_2 = "kamus_slang_2.csv"
 SLANG_DICTIONARY_FILE_PATH_2 = f"dictionaries/{SLANG_DICTIONARY_FILE_NAME_2}"
 DATA_FRAME_SLANG_DICTIONARY_2 = pd.read_csv(SLANG_DICTIONARY_FILE_PATH_2)
-
 SLANG_DICTIONARY_1 = pd.Series(DATA_FRAME_SLANG_DICTIONARY_1.formal.values, index=DATA_FRAME_SLANG_DICTIONARY_1.slang).to_dict()
 SLANG_DICTIONARY_2 = pd.Series(DATA_FRAME_SLANG_DICTIONARY_2.formal.values, index=DATA_FRAME_SLANG_DICTIONARY_2.slang).to_dict()
 
@@ -40,8 +37,66 @@ DATA_FRAME_NEGASI_DICTIONARY_1 = pd.read_csv(NEGASI_DICTIONARY_FILE_PATH_1)
 ANTONYM_DICTIONARY_FILE_NAME_1 = "antonim_bahasa_indonesia.csv"
 ANTONYM_DICTIONARY_FILE_PATH_1 = f"dictionaries/{ANTONYM_DICTIONARY_FILE_NAME_1}"
 DATA_FRAME_ANTONYM_DICTIONARY_1 = pd.read_csv(ANTONYM_DICTIONARY_FILE_PATH_1)
-
 ANTONYM_DICTIONARY_1 = pd.Series(DATA_FRAME_ANTONYM_DICTIONARY_1.antonim.values, index=DATA_FRAME_ANTONYM_DICTIONARY_1.word).to_dict()
+
+###########################################################################################################
+def clean_text(text):
+  # remove RT tag
+  text = re.sub(r'RT\s', '', text)
+  # remove @_username
+  text = re.sub(r"\@([\w]+)", " ", text)
+  # replace emoji decode with space
+  text = re.sub(r"\\u[a-zA-Z0-9]{4}", " ", text)
+  # replace enter /n/ with space
+  text = re.sub(r"\n\s", " ", text)
+  text = re.sub(r"\n", " ", text)
+  # remove non-ascii
+  text = re.sub(r'[^\x00-\x7F]+',' ', text)
+  # fix duplicate characters (ex: hellooooo)
+  text = re.sub(r'([a-zA-Z])\1\1','\\1', text)
+  # replace url
+  text = re.sub(r'http[s]?\:\/\/.[a-zA-Z0-9\.\/\_?=%&#\-\+!]+',' ', text)
+  text = re.sub(r'pic.twitter.com?.[a-zA-Z0-9\.\/\_?=%&#\-\+!]+',' ', text)
+  # convert to lowercase
+  text = text.lower()
+  # remove hashtag
+  text = re.sub(r'\#[a-zA-Z0-9_]+','', text)
+  # remove numbers
+  text = re.sub(r'[0-9]+',' ', text)
+  # remove symbols
+  text = re.sub(r'[!$%^&*@#()_+|~=`{}\[\]%\-:";\'<>?,.\/]', ' ', text)
+  # remove extra spaces to one space
+  text = re.sub(r' +', ' ', text)
+  # remove leading and trailing spaces
+  text = re.sub(r'^[ ]|[ ]$','', text)
+  # replace ikn with ibu kota negara baru
+  text = text.replace("ikn", "ibu kota negara baru")
+  
+  return text
+
+def slang_dict_integration_kamus_1(text):
+  words = text.split()
+  standardization_words = []
+
+  for word in words:
+    if word in SLANG_DICTIONARY_1:
+      standardization_words.append(SLANG_DICTIONARY_1[word])
+    else:
+      standardization_words.append(word)
+
+  return " ".join(standardization_words)
+
+def slang_dict_integration_kamus_2(text):
+  words = text.split()
+  standardization_words = []
+
+  for word in words:
+    if word in SLANG_DICTIONARY_2:
+      standardization_words.append(SLANG_DICTIONARY_2[word])
+    else:
+      standardization_words.append(word)
+
+  return " ".join(standardization_words)
 
 def underscore_negation(text):
   words = text.split()
@@ -78,62 +133,9 @@ def swap_antonyms(text):
   
   return " ".join(new_words)
 
-def slang_dict_integration_kamus_1(text):
-  words = text.split()
-  standardization_words = []
+def replace_underscore(text):
+  text = re.sub(r'_', ' ', text)
 
-  for word in words:
-    if word in SLANG_DICTIONARY_1:
-      standardization_words.append(SLANG_DICTIONARY_1[word])
-    else:
-      standardization_words.append(word)
-
-  return " ".join(standardization_words)
-
-def slang_dict_integration_kamus_2(text):
-  words = text.split()
-  standardization_words = []
-
-  for word in words:
-    if word in SLANG_DICTIONARY_2:
-      standardization_words.append(SLANG_DICTIONARY_2[word])
-    else:
-      standardization_words.append(word)
-
-  return " ".join(standardization_words)
-
-def clean_text(text):
-  # remove RT tag
-  text = re.sub(r'RT\s', '', text)
-  # remove @_username
-  text = re.sub(r"\@([\w]+)", " ", text)
-  # replace emoji decode with space
-  text = re.sub(r"\\u[a-zA-Z0-9]{4}", " ", text)
-  # replace enter /n/ with space
-  text = re.sub(r"\n\s", " ", text)
-  text = re.sub(r"\n", " ", text)
-  # remove non-ascii
-  text = re.sub(r'[^\x00-\x7F]+',' ', text)
-  # fix duplicate characters (ex: hellooooo)
-  text = re.sub(r'([a-zA-Z])\1\1','\\1', text)
-  # replace url
-  text = re.sub(r'http[s]?\:\/\/.[a-zA-Z0-9\.\/\_?=%&#\-\+!]+',' ', text)
-  text = re.sub(r'pic.twitter.com?.[a-zA-Z0-9\.\/\_?=%&#\-\+!]+',' ', text)
-  # convert to lowercase
-  text = text.lower()
-  # remove hashtag
-  text = re.sub(r'\#[a-zA-Z0-9_]+','', text)
-  # remove numbers
-  text = re.sub(r'[0-9]+',' ', text)
-  # remove symbols
-  text = re.sub(r'[!$%^&*@#()_+|~=`{}\[\]%\-:";\'<>?,.\/]', ' ', text)
-  # remove extra spaces to one space
-  text = re.sub(r' +', ' ', text)
-  # remove leading and trailing spaces
-  text = re.sub(r'^[ ]|[ ]$','', text)
-  # replace ikn with ibu kota negara baru
-  text = text.replace("ikn", "ibu kota negara baru")
-  
   return text
 
 def drop_stopwords(text):
@@ -153,54 +155,43 @@ def stem_indonesian_text(text):
   stemmer = factory.create_stemmer()
   return " ".join([stemmer.stem(word) for word in text.split()])
 
-############################################################################
-   
+def document_to_vector(doc, model):
+  words = doc.split()
+  word_vectors = [model[word] for word in words if word in model]
+
+  if len(word_vectors) > 0:
+    return np.mean(word_vectors, axis=0)
+  else:
+    return np.zeros((model.get_dimension(),))
+##############################################################################################################
+
 st.title('Analisis Sentimen dengan KNN berbasis Lexicon pada Bahasa Indonesia')
 st.write("Analisis Reaksi Publik Terhadap Pemindahan Ibu Kota Negara Menggunakan Metode Lexicon Based dan KNN")
 st.text('Masukkan kalimat terkait topik relokasi ibu kota dan dapatkan prediksi sentimennya')
-
-
-model_selection = st.selectbox('Pilih model berdasarkan nilai K', ['k1-InSet', 'k3-InSet', 'k5-InSet', 'k7-InSet', 'k9-InSet'])
-
-if model_selection == 'k1-InSet':
-  sentiment_model = inset_knn1
-elif model_selection == 'k3-InSet':
-  sentiment_model = inset_knn3
-elif model_selection == 'k5-InSet':
-  sentiment_model = inset_knn5
-elif model_selection == 'k7-InSet':
-  sentiment_model = inset_knn7
-elif model_selection == 'k9-InSet':
-  sentiment_model = inset_knn9
-
 
 user_input = st.text_area('Masukkan kalimat di sini:')
 
 if st.button('Prediksi Sentimen'):
   if user_input:
-    # clean, negation handling, standardize, translate, remove stopwords, stem text
+    # clean, standardize, negation handling, remove stopwords, stem text
     cleaned_text = clean_text(user_input)
-    st.write(f'cleaned_text: **{cleaned_text}**')
     standardized_text = slang_dict_integration_kamus_1(cleaned_text)
     standardized_text = slang_dict_integration_kamus_2(standardized_text)
-    st.write(f'standardized_text: **{standardized_text}**')
     underscore_negation_text = underscore_negation(standardized_text)
-    st.write(f'underscore_negation_text: **{underscore_negation_text}**')
     swap_negation_text = swap_antonyms(underscore_negation_text)
-    st.write(f'swap_negation_text: **{swap_negation_text}**')
-    stopwords_removed_text = drop_stopwords(swap_negation_text)
+    final_negation_text = replace_underscore(swap_negation_text)
+    stopwords_removed_text = drop_stopwords(final_negation_text)
     after_stemming_text = stem_indonesian_text(stopwords_removed_text)
-    st.write(f'teks yang sudah diproses: **{after_stemming_text}**')
 
     # vectorize text
-    vectorized_text = vectorizer.transform([after_stemming_text])
-    selected_text = selector.transform(vectorized_text)
-    st.write(f'teks yang sudah divektorisasi: **{vectorized_text}**')
-    st.write(f'teks yang sudah melalui seleksi fitur: **{selected_text}**')
+    vectorized_text = document_to_vector(after_stemming_text, ft_model)
+
+    # apply chi2 feature selection
+    vectorized_text_normalized = np.abs(vectorized_text).reshape(1, -1)
+    selected_features = selector_model.transform(vectorized_text_normalized)
 
     # predict sentiment
-    sentiment = sentiment_model.predict(selected_text)[0]
-
+    sentiment = knn_model.predict(selected_features)
     st.write(f'Sentimen dari kalimat yang dimasukkan: **{sentiment}**')
   else:
     st.write('Anda belum memasukkan kalimat.')
