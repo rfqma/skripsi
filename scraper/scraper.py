@@ -7,19 +7,29 @@ import time
 
 MIN_TWEETS = 1000
 
-QUERY_FIRST = 'ikn lang:id since:2023-10-01'
-QUERY_SECOND = 'ibu kota baru since:2023-10-01'
-QUERY_THIRD = 'ibu kota nusantara since:2023-10-01'
-QUERY_FOURTH = 'ibu kota pindah since:2023-10-01'
-QUERY_FIFTH = 'pemindahan ibu kota since:2023-10-01'
-CURRENT_QUERY = QUERY_FIFTH
+QUERY_FIRST = 'ikn lang:id since:2024-01-01 until:2024-10-01'
+QUERY_SECOND = 'ibu kota baru since:2024-01-01 until:2024-10-01'
+QUERY_THIRD = 'ibu kota nusantara since:2024-01-01 until:2024-10-01'
+QUERY_FOURTH = 'ibu kota pindah since:2024-01-01 until:2024-10-01'
+QUERY_FIFTH = 'pemindahan ibu kota since:2024-01-01 until:2024-10-01'
+QUERY_SIXTH = 'ibukota baru since:2024-01-01 until:2024-10-01'
+QUERY_SEVENTH = 'ibukota nusantara since:2024-01-01 until:2024-10-01'
+QUERY_EIGHTH = 'ibukota pindah since:2024-01-01 until:2024-10-01'
+QUERY_NINTH = 'pemindahan ibukota since:2024-01-01 until:2024-10-01'
+
 
 FILE_NAME_FIRST = 'ikn.csv'
 FILE_NAME_SECOND = 'ibu_kota_baru.csv'
 FILE_NAME_THIRD = 'ibu_kota_nusantara.csv'
 FILE_NAME_FOURTH = 'ibu_kota_pindah.csv'
 FILE_NAME_FIFTH = 'pemindahan_ibu_kota.csv'
-CURRENT_FILE_NAME = FILE_NAME_FIFTH
+FILE_NAME_SIXTH = 'ibukota_baru.csv'
+FILE_NAME_SEVENTH = 'ibukota_nusantara.csv'
+FILE_NAME_EIGHTH = 'ibukota_pindah.csv'
+FILE_NAME_NINTH = 'pemindahan_ibukota.csv'
+
+CURRENT_QUERY = QUERY_NINTH
+CURRENT_FILE_NAME = FILE_NAME_NINTH
 
 async def get_tweets(tweets):
   if tweets is None:
@@ -30,16 +40,13 @@ async def get_tweets(tweets):
       print(f'{datetime.now()} - Mengambil tweet selanjutnya setelah {wait_time} detik...')
       time.sleep(wait_time)
       tweets = await tweets.next()
-  
   return tweets
-
-
-user_agent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36'
 
 with open(f'datasets/{CURRENT_FILE_NAME}', 'w', newline="", encoding='utf-8') as file:
   writer = csv.writer(file)
   writer.writerow(['no', 'urls', 'user_id', 'username', 'user_display_name', 'tweet_id', 'full_text', 'created_at', 'retweet_count', 'like_count'])
 
+user_agent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36'
 client = Client(language='en-US', user_agent=user_agent)
 client.load_cookies('scraper/twikit_cookies.json')
 

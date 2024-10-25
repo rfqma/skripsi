@@ -6,9 +6,9 @@
 
 - `dataset`
   - Data regarding the relocation of Indonesia's capital city from X (formerly Twitter).
-  - Data crawling was done at 2 October 2024 with keywords: _ibu_kota_baru_, _ibu_kota_nusantara_, _ibu_kota_pindah_, _ikn_, _pemindahan_ibu_kota_.
-  - Some X Search Queries like: _lang:id_, _since:2023-10-01_.
-  - Also the crawler use `LATEST` tab from X.
+  - Data crawling was done at 25 October 2024 with keywords: _ibu_kota_baru_, _ibu_kota_nusantara_, _ibu_kota_pindah_, _ikn_, _pemindahan_ibu_kota_.
+  - Some X Search Queries like: _lang:id_, _since:2024-01-01_, _until:2024-10-01_.
+  - Also the crawler use `LATEST` or `TOP` tab from X.
 - `slang, stopwords, negation, etc`
   - [/dictionaries](https://github.com/rfqma/skripsi/tree/master/dictionaries)
 - `Custom Lexicon`
