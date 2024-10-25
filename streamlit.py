@@ -1,6 +1,5 @@
-import streamlit as st
+import streamlit_app as st
 import pandas as pd
-import compress_fasttext
 import numpy as np
 import pickle
 import re
@@ -12,9 +11,9 @@ def load_model(file_path):
   with open(file_path, 'rb') as file:
     return pickle.load(file)
 
-ft_model = compress_fasttext.models.CompressedFastTextKeyedVectors.load("models/fastText/ft_small.model")
-selector_model = load_model('./models/chi2/selector_model.pkl')
-knn_model = load_model('./models/8020/knn1_8020_model.pkl')
+knn_model = load_model('models/8020/knn1_8020_model.pkl')
+tfidf_vectorizer = load_model('models/tf-idf/tfidf_vectorizer.pkl')
+chi2_selector = load_model('models/chi2/chi2_selector.pkl')
 ###########################################################################################################
 
 SLANG_DICTIONARY_FILE_NAME_1 = "kamus_slang_1.csv"
@@ -154,15 +153,6 @@ def stem_indonesian_text(text):
   factory = StemmerFactory()
   stemmer = factory.create_stemmer()
   return " ".join([stemmer.stem(word) for word in text.split()])
-
-def document_to_vector(doc, model):
-  words = doc.split()
-  word_vectors = [model[word] for word in words if word in model]
-
-  if len(word_vectors) > 0:
-    return np.mean(word_vectors, axis=0)
-  else:
-    return np.zeros((model.get_dimension(),))
 ##############################################################################################################
 
 st.title('Analisis Sentimen dengan KNN berbasis Lexicon pada Bahasa Indonesia')
@@ -184,11 +174,10 @@ if st.button('Prediksi Sentimen'):
     after_stemming_text = stem_indonesian_text(stopwords_removed_text)
 
     # vectorize text
-    vectorized_text = document_to_vector(after_stemming_text, ft_model)
+    vectorized_text = tfidf_vectorizer.transform([after_stemming_text])
 
     # apply chi2 feature selection
-    vectorized_text_normalized = np.abs(vectorized_text).reshape(1, -1)
-    selected_features = selector_model.transform(vectorized_text_normalized)
+    selected_features = chi2_selector.transform(vectorized_text)
 
     # predict sentiment
     sentiment = knn_model.predict(selected_features)
