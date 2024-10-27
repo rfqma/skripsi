@@ -1,12 +1,12 @@
-# Penerapan Metode Klasifikasi KNN dan Lexicon Based dengan Ekstraksi Fitur fastText untuk Analisis Sentimen Publik Terhadap Pemindahan Ibu Kota Negara
+# Penerapan Metode Klasifikasi KNN dan Lexicon Based dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Terhadap Pemindahan Ibu Kota Negara
 
-> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of algorithm classifiers K-Nearest Neighbor (KNN), Feature Extraction fastText, SMOTE for balancer, and also Lexicon-based approach for labeling data as positive, negative, or netral sentiment.
+> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of classifiers algorithm K-Nearest Neighbor (KNN), Feature Extraction TF-IDF, SMOTE for balancer, and also Lexicon-based approach for labeling data as positive, negative, or netral sentiment.
 
 # Input
 
 - `dataset`
   - Data regarding the relocation of Indonesia's capital city from X (formerly Twitter).
-  - Data crawling was done at 25 October 2024 with keywords: _ibu_kota_baru_, _ibu_kota_nusantara_, _ibu_kota_pindah_, _ikn_, _pemindahan_ibu_kota_.
+  - Data crawling was done at 26 October 2024 with keywords: _ibu kota baru_, _ibu kota nusantara_, _ibu kota pindah_, _ikn_, _pemindahan ibu kota_, _ibukota baru_, _ibukota nusantara_, _ibukota pindah_, _pemindahan ibukota_.
   - Some X Search Queries like: _lang:id_, _since:2024-01-01_, _until:2024-10-01_.
   - Also the crawler use `LATEST` or `TOP` tab from X.
 - `slang, stopwords, negation, etc`
@@ -14,7 +14,7 @@
 - `Custom Lexicon`
   - [/lexicons](https://github.com/rfqma/skripsi/tree/master/lexicons)
 - `Ekstraksi Fitur`
-  - `fastText`
+  - `TF-IDF`
 - `Balancer`
   - `SMOTE`
 - `Classifier Algorithm`
@@ -47,10 +47,6 @@
 > - Generate _`twikit`_ cookies with _`scraper/cookies.py`_.
 > - Save it to _`scraper/twikit_cookies.json`_.
 > - Run _`scraper/scraper.py`_.
-
-## fastText
-
-> read more on [/models/fastText](https://github.com/rfqma/skripsi/tree/master/models/fastText)
 
 ## Setup
 
@@ -105,18 +101,6 @@ jupyter notebook
 
 ```bash
 deactivate
-```
-
-## Usage Order
-
-```bash
-1. scraper/cookies.py
-2. scraper/scraper.py
-3. preprocess.ipynb
-4. sentiment.ipynb
-5. knn-[7030|8020|9010].ipynb
-6. model_test.ipynb
-6. streamlit.py
 ```
 
 ## Streamlit

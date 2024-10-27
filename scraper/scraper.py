@@ -8,14 +8,14 @@ import time
 MIN_TWEETS = 1000
 
 QUERY_FIRST = 'ikn lang:id since:2024-01-01 until:2024-10-01'
-QUERY_SECOND = 'ibu kota baru since:2024-01-01 until:2024-10-01'
-QUERY_THIRD = 'ibu kota nusantara since:2024-01-01 until:2024-10-01'
-QUERY_FOURTH = 'ibu kota pindah since:2024-01-01 until:2024-10-01'
-QUERY_FIFTH = 'pemindahan ibu kota since:2024-01-01 until:2024-10-01'
-QUERY_SIXTH = 'ibukota baru since:2024-01-01 until:2024-10-01'
-QUERY_SEVENTH = 'ibukota nusantara since:2024-01-01 until:2024-10-01'
-QUERY_EIGHTH = 'ibukota pindah since:2024-01-01 until:2024-10-01'
-QUERY_NINTH = 'pemindahan ibukota since:2024-01-01 until:2024-10-01'
+QUERY_SECOND = 'ibu kota baru lang:id since:2024-01-01 until:2024-10-01'
+QUERY_THIRD = 'ibu kota nusantara lang:id since:2024-01-01 until:2024-10-01'
+QUERY_FOURTH = 'ibu kota pindah lang:id since:2024-01-01 until:2024-10-01'
+QUERY_FIFTH = 'pemindahan ibu kota lang:id since:2024-01-01 until:2024-10-01'
+QUERY_SIXTH = 'ibukota baru lang:id since:2024-01-01 until:2024-10-01'
+QUERY_SEVENTH = 'ibukota nusantara lang:id since:2024-01-01 until:2024-10-01'
+QUERY_EIGHTH = 'ibukota pindah lang:id since:2024-01-01 until:2024-10-01'
+QUERY_NINTH = 'pemindahan ibukota lang:id since:2024-01-01 until:2024-10-01'
 
 
 FILE_NAME_FIRST = 'ikn.csv'
@@ -42,7 +42,7 @@ async def get_tweets(tweets):
       tweets = await tweets.next()
   return tweets
 
-with open(f'datasets/{CURRENT_FILE_NAME}', 'w', newline="", encoding='utf-8') as file:
+with open(f'datasets/raw/{CURRENT_FILE_NAME}', 'w', newline="", encoding='utf-8') as file:
   writer = csv.writer(file)
   writer.writerow(['no', 'urls', 'user_id', 'username', 'user_display_name', 'tweet_id', 'full_text', 'created_at', 'retweet_count', 'like_count'])
 
@@ -72,7 +72,7 @@ async def main():
       tweet_count += 1
       tweet_data = [tweet_count, tweet.urls, tweet.user.id, tweet.user.screen_name, tweet.user.name, tweet.id, tweet.text, tweet.created_at, tweet.retweet_count, tweet.favorite_count]
 
-      with open(f'datasets/{CURRENT_FILE_NAME}', 'a', newline="", encoding='utf-8') as file:
+      with open(f'datasets/raw/{CURRENT_FILE_NAME}', 'a', newline="", encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(tweet_data)
 
