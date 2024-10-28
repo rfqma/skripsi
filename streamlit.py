@@ -24,7 +24,7 @@ if st.sidebar.button('Evaluasi'):
   st.session_state.page = "Evaluasi"
 
 if st.session_state.page == "Beranda":
-  st.title("Penerapan Metode Klasifikasi KNN dan Lexicon Based dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Terhadap Pemindahan Ibu Kota Negara")
+  st.title("Penerapan Metode Klasifikasi K-Nearest Neighbor dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Berbasis Leksikon Terhadap Pemindahan Ibu Kota Negara")
 
 if st.session_state.page == "Prediksi":
   st.text('Masukkan kalimat terkait topik relokasi ibu kota dan dapatkan prediksi sentimennya')
@@ -70,3 +70,58 @@ if st.session_state.page == "Dataset":
 
 if st.session_state.page == "Evaluasi":
   st.title('Evaluasi')
+  st.text('Evaluasi model algoritma klasifikasi KNN')
+  eval = st.selectbox('Pilih parameter:', ['k=1, 90:10', 'k=1, 80:20', 'k=1, 70:30'])
+
+  if eval == 'k=1, 90:10':
+    __json = stfunc.get_model_evaluation(0.1, "90:10", 1)
+    st.write(__json)
+    acc = __json['accuracy'] * 100
+    pre = __json['precision'] * 100
+    rec = __json['recall'] * 100
+
+    st.write('### Metriks')
+    st.write('Accuracy:', f"{acc:.2f}%")
+    st.write('Precision:', f"{pre:.2f}%")
+    st.write('Recall:', f"{rec:.2f}%")
+    metrics_df = pd.DataFrame({
+      'Metric': ['Accuracy', 'Precision', 'Recall'],
+      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
+    })
+
+    st.bar_chart(metrics_df.set_index('Metric'))
+  elif eval == 'k=1, 80:20':
+    __json = stfunc.get_model_evaluation(0.2, "80:20", 1)
+    st.write(__json)
+    acc = __json['accuracy'] * 100
+    pre = __json['precision'] * 100
+    rec = __json['recall'] * 100
+
+    st.write('### Metriks')
+    st.write('Accuracy:', f"{acc:.2f}%")
+    st.write('Precision:', f"{pre:.2f}%")
+    st.write('Recall:', f"{rec:.2f}%")
+    metrics_df = pd.DataFrame({
+      'Metric': ['Accuracy', 'Precision', 'Recall'],
+      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
+    })
+
+    st.bar_chart(metrics_df.set_index('Metric'))
+  elif eval == 'k=1, 70:30':
+    __json = stfunc.get_model_evaluation(0.3, "70:30", 1)
+    st.write(__json)
+    acc = __json['accuracy'] * 100
+    pre = __json['precision'] * 100
+    rec = __json['recall'] * 100
+
+    st.write('### Metriks')
+    st.write('Accuracy:', f"{acc:.2f}%")
+    st.write('Precision:', f"{pre:.2f}%")
+    st.write('Recall:', f"{rec:.2f}%")
+    metrics_df = pd.DataFrame({
+      'Metric': ['Accuracy', 'Precision', 'Recall'],
+      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
+    })
+
+    st.bar_chart(metrics_df.set_index('Metric'))
+    

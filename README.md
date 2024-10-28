@@ -1,6 +1,6 @@
-# Penerapan Metode Klasifikasi KNN dan Lexicon Based dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Terhadap Pemindahan Ibu Kota Negara
+# Penerapan Metode Klasifikasi K-Nearest Neighbor dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Berbasis Leksikon Terhadap Pemindahan Ibu Kota Negara
 
-> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of classifiers algorithm K-Nearest Neighbor (KNN), Feature Extraction TF-IDF, SMOTE for balancer, and also Lexicon-based approach for labeling data as positive, negative, or netral sentiment.
+> Analyze opinions expressed on X (formerly Twitter) regarding the relocation of Indonesia's capital city using combination of classifiers algorithm K-Nearest Neighbor (KNN), Feature Extraction TF-IDF, SMOTE for balancer, and also Lexicon-based approach for labeling data as positive, negative, or neutral sentiment.
 
 # Input
 

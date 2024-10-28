@@ -4,6 +4,12 @@ from nltk.corpus import stopwords
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import joblib
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+import joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
+from imblearn.over_sampling import SMOTE
 
 #################################################################################
 
@@ -143,3 +149,22 @@ def stem_indonesian_text(text):
   stemmer = factory.create_stemmer()
   return " ".join([stemmer.stem(word) for word in text.split()])
 
+def get_model_evaluation(size_test, ratio, k):
+  ds = pd.read_csv("outputs/sentiment.csv")
+
+  tfidf = TfidfVectorizer()
+  X_tfidf = tfidf.fit_transform(ds["preprocessed_text"])
+
+  smote = SMOTE(random_state=21)
+  X_smote, Y_smote = smote.fit_resample(X_tfidf, ds["sentiment_label"])
+
+  X_train,X_test,Y_train,Y_test=train_test_split(X_smote, Y_smote, test_size=size_test, random_state=21)
+
+  knn = KNeighborsClassifier(n_neighbors=k, weights='distance')
+  knn.fit(X_train,Y_train)
+  y_pred = knn.predict(X_test)
+
+  accuracy = accuracy_score(Y_test, y_pred)
+  precision = precision_score(Y_test, y_pred, average='weighted')
+  recall = recall_score(Y_test, y_pred, average='weighted')
+  return {"accuracy": accuracy, "precision": precision, "recall": recall}
