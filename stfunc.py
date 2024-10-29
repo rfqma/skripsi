@@ -167,4 +167,4 @@ def get_model_evaluation(size_test, ratio, k):
   accuracy = accuracy_score(Y_test, y_pred)
   precision = precision_score(Y_test, y_pred, average='weighted')
   recall = recall_score(Y_test, y_pred, average='weighted')
-  return {"accuracy": accuracy, "precision": precision, "recall": recall}
+  return {"accuracy": accuracy, "precision": precision, "recall": recall, "Y_test": Y_test, "y_pred": y_pred, "labels": knn.classes_}
