@@ -2,8 +2,5 @@ scraper/raw_cookies.json
 scraper/twikit_cookies.json
 venv/
 myenv/
-models/w2vec/w2v_cbow_400.model*
-models/w2vec/idwiki-latest-pages-articles.xml.bz2
-models/w2vec/wiki_corpus.txt
 outputs/preprocessed.csv
 outputs/sentiment.csv
