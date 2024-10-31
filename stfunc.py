@@ -10,6 +10,12 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from imblearn.over_sampling import SMOTE
+from twikit import Client, TooManyRequests
+import asyncio
+from datetime import datetime
+import time
+import json
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 #################################################################################
 
@@ -34,6 +40,25 @@ ANTONYM_DICTIONARY_FILE_NAME_1 = "antonim_bahasa_indonesia.csv"
 ANTONYM_DICTIONARY_FILE_PATH_1 = f"dictionaries/{ANTONYM_DICTIONARY_FILE_NAME_1}"
 DATA_FRAME_ANTONYM_DICTIONARY_1 = pd.read_csv(ANTONYM_DICTIONARY_FILE_PATH_1)
 ANTONYM_DICTIONARY_1 = pd.Series(DATA_FRAME_ANTONYM_DICTIONARY_1.antonim.values, index=DATA_FRAME_ANTONYM_DICTIONARY_1.word).to_dict()
+
+#################################################################################
+
+with open("./lexicons/lexicon_json_inset-neg.txt") as f:
+  inset_neg = f.read()
+with open("./lexicons/lexicon_json_inset-pos.txt") as f:
+  inset_pos = f.read()
+
+insetNeg = json.loads(inset_neg)
+insetPos = json.loads(inset_pos)
+
+sia_inset_neg = SentimentIntensityAnalyzer()
+sia_inset_pos = SentimentIntensityAnalyzer()
+
+sia_inset_neg.lexicon.clear()
+sia_inset_pos.lexicon.clear()
+
+sia_inset_neg.lexicon.update(insetNeg)
+sia_inset_pos.lexicon.update(insetPos)
 
 #################################################################################
 
@@ -168,3 +193,53 @@ def get_model_evaluation(size_test, ratio, k):
   precision = precision_score(Y_test, y_pred, average='weighted')
   recall = recall_score(Y_test, y_pred, average='weighted')
   return {"accuracy": accuracy, "precision": precision, "recall": recall, "Y_test": Y_test, "y_pred": y_pred, "labels": knn.classes_}
+
+async def get_tweets(query, client):
+  print(f'{datetime.now()} - Fetching tweets...')
+  try:
+    tweets = await client.search_tweet(query, product="Latest", count=5)
+  except TooManyRequests as e:
+    rate_limit_reset = datetime.fromtimestamp(e.rate_limit_reset)
+    print(f'{datetime.now()} - Rate limit reached. Waiting until {rate_limit_reset}...')
+    wait_time = rate_limit_reset - datetime.now()
+    time.sleep(wait_time.total_seconds())
+    return []
+  
+  tweet_data = []
+  for idx, tweet in enumerate(tweets, 1):
+      tweet_info = {
+          '#': idx,
+          'tweet_id': tweet.id,
+          'user_id': tweet.user.id,
+          'username': tweet.user.screen_name,
+          'display_name': tweet.user.name,
+          'text': tweet.text,
+          'created_at': tweet.created_at,
+          'retweet_count': tweet.retweet_count,
+          'favorite_count': tweet.favorite_count
+      }
+
+      tweet_data.append(tweet_info)
+      if idx >= 5:
+          break
+
+  print(f'{datetime.now()} - {len(tweet_data)} tweets fetched successfully.')
+  return tweet_data
+
+def call_get_tweets(query):
+  user_agent = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36'
+  client = Client(language='en-US', user_agent=user_agent)
+  client.load_cookies('scraper/twikit_cookies.json')
+  tweets = asyncio.run(get_tweets(query, client))
+  return pd.DataFrame(tweets)
+
+def get_sentiment(text):
+  neg = sia_inset_neg.polarity_scores(text)["compound"]
+  pos = sia_inset_pos.polarity_scores(text)["compound"]
+  inset_compound_score = neg + pos
+  if inset_compound_score > 0:
+    return {"sentiment": "positif", "compound_score": inset_compound_score, "positive_score": pos, "negative_score": neg}
+  elif inset_compound_score < 0:
+    return {"sentiment": "negatif", "compound_score": inset_compound_score, "positive_score": pos, "negative_score": neg}
+  else:
+    return {"sentiment": "netral", "compound_score": inset_compound_score, "positive_score": pos, "negative_score": neg}

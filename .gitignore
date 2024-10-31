@@ -4,3 +4,4 @@ venv/
 myenv/
 outputs/preprocessed.csv
 outputs/sentiment.csv
+__pycache__

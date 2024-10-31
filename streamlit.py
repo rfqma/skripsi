@@ -24,6 +24,12 @@ if st.sidebar.button('Dataset'):
   st.session_state.page = "Dataset"
 if st.sidebar.button('Evaluasi'):
   st.session_state.page = "Evaluasi"
+if st.sidebar.button('Sampel Tweet'):
+  st.session_state.page = "Sampel Tweet"
+if st.sidebar.button('Preprocessing'):
+  st.session_state.page = "Preprocessing"
+if st.sidebar.button('Sentimen Leksikon'):
+  st.session_state.page = "Sentimen Leksikon"
 
 if st.session_state.page == "Beranda":
   st.title("Penerapan Metode Klasifikasi K-Nearest Neighbor dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Berbasis Leksikon Terhadap Pemindahan Ibu Kota Negara")
@@ -144,4 +150,54 @@ if st.session_state.page == "Evaluasi":
     disp.plot()
     plt.title(f"Confusion Matrix for k=5")
     st.pyplot(plt)
+
+if st.session_state.page == "Sampel Tweet":
+  st.title('Sampel Tweet')
+  st.text('Scraping sampel tweet')
+  query = st.text_input('Masukkan query pencarian twitter:')
+  if st.button('Fetch'):
+    if query:
+      tweets_df = None
+      tweets_df = stfunc.call_get_tweets(query)
+      st.write(tweets_df)
+    else:
+      st.write('Anda belum memasukkan query.')
+
+if st.session_state.page == "Preprocessing":
+  st.title("Preprocessing")
+  st.text('Masukkan tweet yang ingin dibersihkan')
+  __input = st.text_area('Masukkan tweet di sini:')
+  if st.button('Proses'):
+    if __input:
+      # clean, standardize, negation handling, remove stopwords, stem text
+      cleaned_text = stfunc.clean_text(__input)
+      standardized_text = stfunc.slang_dict_integration_kamus_1(cleaned_text)
+      standardized_text = stfunc.slang_dict_integration_kamus_2(standardized_text)
+      underscore_negation_text = stfunc.underscore_negation(standardized_text)
+      swap_negation_text = stfunc.swap_antonyms(underscore_negation_text)
+      final_negation_text = stfunc.replace_underscore(swap_negation_text)
+      stopwords_removed_text = stfunc.drop_stopwords(final_negation_text)
+      after_stemming_text = stfunc.stem_indonesian_text(stopwords_removed_text)
+      st.write(f'Teks setelah pembersihan: **{cleaned_text}**')
+      st.write(f'Teks setelah standarisasi (kamus 1): **{standardized_text}**')
+      st.write(f'Teks setelah standarisasi (kamus 2): **{standardized_text}**')
+      st.write(f'Teks setelah penanganan negasi (underscore): **{underscore_negation_text}**')
+      st.write(f'Teks setelah penanganan negasi (swap antonim): **{swap_negation_text}**')
+      st.write(f'Teks setelah penggantian underscore: **{final_negation_text}**')
+      st.write(f'Teks setelah penghapusan stopwords: **{stopwords_removed_text}**')
+      st.write(f'Teks setelah stemming: **{after_stemming_text}**')
+    else:
+      st.write('Anda belum memasukkan tweet.')
+
+if st.session_state.page == "Sentimen Leksikon":
+  st.title("Label Sentimen Lexicon (InSet)")
+  st.text('Masukkan kalimat yang ingin dilabeli sentimennya')
+  ___input = st.text_area('Masukkan kalimat di sini:')
+  if st.button('Proses'):
+    if ___input:
+      results = stfunc.get_sentiment(___input)
+      st.write(results)
+    else:
+      st.write('Anda belum memasukkan kalimat.')
+
     
