@@ -18,5 +18,6 @@
 - Negation Handling
   - `negasi.csv`
     - [GitHub Repository](https://github.com/OkaDarmayasa/review)
+    - [GitHub Repository](https://github.com/masdevid/sentistrength_id/blob/master/negatingword.txt)
   - `antonim_bahasa_indonesia.csv`
     - [GitHub Repository](https://github.com/OkaDarmayasa/review/blob/main/Dataset/antonim_bahasa_indonesia.csv)
