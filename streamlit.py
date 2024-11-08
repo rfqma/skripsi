@@ -32,7 +32,7 @@ if st.sidebar.button('Sentimen Leksikon'):
   st.session_state.page = "Sentimen Leksikon"
 
 if st.session_state.page == "Beranda":
-  st.title("Penerapan Metode Klasifikasi K-Nearest Neighbor dengan Ekstraksi Fitur TF-IDF untuk Analisis Sentimen Publik Berbasis Leksikon Terhadap Pemindahan Ibu Kota Negara")
+  st.title("Penerapan Metode Klasifikasi K-Nearest Neighbor dan Lexicon Based untuk Analisis Sentimen Publik Terhadap Pemindahan Ibu Kota Negara dengan Ekstraksi Fitur TF-IDF")
 
 if st.session_state.page == "Prediksi":
   st.text('Masukkan kalimat terkait topik relokasi ibu kota dan dapatkan prediksi sentimennya')
