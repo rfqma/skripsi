@@ -48,7 +48,7 @@
 > - Save it to _`scraper/twikit_cookies.json`_.
 > - Run _`scraper/scraper.py`_.
 
-## Setup
+## virtualenv
 
 - Initialize _`virtualenv`_
 
@@ -88,7 +88,7 @@ python -m ipykernel install --user --name <virtualenv_name>
 - Update _`pip`_
 
 ```bash
-python -m pip install wheel setuptools pip --upgrade
+pip install wheel setuptools pip --upgrade
 ```
 
 - Start _`Jupyter Notebook`_ server on _`virtualenv`_
