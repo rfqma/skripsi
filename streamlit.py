@@ -48,6 +48,14 @@ if st.session_state.page == "Prediksi":
       final_negation_text = stfunc.replace_underscore(swap_negation_text)
       stopwords_removed_text = stfunc.drop_stopwords(final_negation_text)
       after_stemming_text = stfunc.stem_indonesian_text(stopwords_removed_text)
+
+      st.write(f'Kalimat yang dimasukkan: **{user_input}**')
+      st.write(f'Kalimat setelah di pembersihan: **{cleaned_text}**')
+      st.write(f'Kalimat setelah di standarisasi (kamus 1): **{standardized_text}**')
+      st.write(f'Kalimat setelah di penanganan negasi (underscore): **{underscore_negation_text}**')
+      st.write(f'Kalimat setelah di penanganan negasi (swap antonim): **{swap_negation_text}**')
+      st.write(f'Kalimat setelah di penggantian underscore: **{final_negation_text}**')
+      st.write(f'Kalimat setelah di penghapusan stopwords: **{stopwords_removed_text}**')
       st.write(f'Kalimat setelah di preprocessing: **{after_stemming_text}**')
 
       # vectorize text
