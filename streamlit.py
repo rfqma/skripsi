@@ -9,7 +9,7 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 local_css("streamlit.css")
 
-knn_model = stfunc.load_model('models/8020/knn1_8020_model.pkl')
+knn_model = stfunc.load_model('models/8020/knn_8020_model.pkl')
 tfidf_vectorizer = stfunc.load_model('models/tf-idf/tfidf_vectorizer.pkl')
 
 if "page" not in st.session_state:
@@ -51,7 +51,7 @@ if st.session_state.page == "Prediksi":
 
       st.write(f'Kalimat yang dimasukkan: **{user_input}**')
       st.write(f'Kalimat setelah di pembersihan: **{cleaned_text}**')
-      st.write(f'Kalimat setelah di standarisasi (kamus 1): **{standardized_text}**')
+      st.write(f'Kalimat setelah di standarisasi: **{standardized_text}**')
       st.write(f'Kalimat setelah di penanganan negasi (underscore): **{underscore_negation_text}**')
       st.write(f'Kalimat setelah di penanganan negasi (swap antonim): **{swap_negation_text}**')
       st.write(f'Kalimat setelah di penggantian underscore: **{final_negation_text}**')
@@ -59,7 +59,7 @@ if st.session_state.page == "Prediksi":
       st.write(f'Kalimat setelah di preprocessing: **{after_stemming_text}**')
 
       # vectorize text
-      vectorized_text = tfidf_vectorizer.transform([after_stemming_text])
+      vectorized_text = tfidf_vectorizer.transform([after_stemming_text]).toarray()
       st.write(f'vectorized text: {vectorized_text}')
 
       # predict sentiment
@@ -87,10 +87,10 @@ if st.session_state.page == "Dataset":
 if st.session_state.page == "Evaluasi":
   st.title('Evaluasi')
   st.text('Evaluasi model algoritma klasifikasi KNN')
-  eval = st.selectbox('Pilih parameter:', ['k=1', 'k=3', 'k=5'])
+  eval = st.selectbox('Pilih parameter:', ['90:10', '80:20', '70:30'])
 
-  if eval == 'k=1':
-    __json = stfunc.get_model_evaluation(0.2, "80:20", 1)
+  if eval == '90:10':
+    __json = stfunc.get_model_evaluation(0.1, "90:10")
     st.write(__json)
     acc = __json['accuracy'] * 100
     pre = __json['precision'] * 100
@@ -110,10 +110,10 @@ if st.session_state.page == "Evaluasi":
     cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
     disp.plot()
-    plt.title(f"Confusion Matrix for k=1")
+    plt.title(f"Confusion Matrix for 90:10")
     st.pyplot(plt)
-  elif eval == 'k=3':
-    __json = stfunc.get_model_evaluation(0.2, "80:20", 3)
+  elif eval == '80:20':
+    __json = stfunc.get_model_evaluation(0.2, "80:20")
     st.write(__json)
     acc = __json['accuracy'] * 100
     pre = __json['precision'] * 100
@@ -133,10 +133,10 @@ if st.session_state.page == "Evaluasi":
     cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
     disp.plot()
-    plt.title(f"Confusion Matrix for k=3")
+    plt.title(f"Confusion Matrix for 80:20")
     st.pyplot(plt)
-  elif eval == 'k=5':
-    __json = stfunc.get_model_evaluation(0.2, "80:20", 5)
+  elif eval == '70:30':
+    __json = stfunc.get_model_evaluation(0.3, "70:30")
     st.write(__json)
     acc = __json['accuracy'] * 100
     pre = __json['precision'] * 100
@@ -156,7 +156,7 @@ if st.session_state.page == "Evaluasi":
     cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
     disp.plot()
-    plt.title(f"Confusion Matrix for k=5")
+    plt.title(f"Confusion Matrix for 70:30")
     st.pyplot(plt)
 
 if st.session_state.page == "Sampel Tweet":

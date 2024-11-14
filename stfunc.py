@@ -95,8 +95,8 @@ def clean_text(text):
   text = re.sub(r' +', ' ', text)
   # remove leading and trailing spaces
   text = re.sub(r'^[ ]|[ ]$','', text)
-  # replace ikn with ibu kota negara baru
-  text = text.replace("ikn", "ibu kota negara baru")
+  # replace ikn with ibukota negara baru
+  text = text.replace("ikn", "ibukota negara baru")
   return text
 
 def slang_dict_integration_kamus_1(text):
@@ -174,25 +174,24 @@ def stem_indonesian_text(text):
   stemmer = factory.create_stemmer()
   return " ".join([stemmer.stem(word) for word in text.split()])
 
-def get_model_evaluation(size_test, ratio, k):
+def get_model_evaluation(size_test, ratio):
+  knn_model = load_model('models/8020/knn_8020_model.pkl')
   ds = pd.read_csv("outputs/sentiment.csv")
 
   tfidf = TfidfVectorizer()
-  X_tfidf = tfidf.fit_transform(ds["preprocessed_text"])
+  X_tfidf = tfidf.fit_transform(ds["preprocessed_text"]).toarray()
 
   smote = SMOTE(random_state=21)
   X_smote, Y_smote = smote.fit_resample(X_tfidf, ds["sentiment_label"])
 
   X_train,X_test,Y_train,Y_test=train_test_split(X_smote, Y_smote, test_size=size_test, random_state=21)
 
-  knn = KNeighborsClassifier(n_neighbors=k, weights='distance')
-  knn.fit(X_train,Y_train)
-  y_pred = knn.predict(X_test)
+  y_pred = knn_model.predict(X_test)
 
   accuracy = accuracy_score(Y_test, y_pred)
   precision = precision_score(Y_test, y_pred, average='weighted')
   recall = recall_score(Y_test, y_pred, average='weighted')
-  return {"accuracy": accuracy, "precision": precision, "recall": recall, "Y_test": Y_test, "y_pred": y_pred, "labels": knn.classes_}
+  return {"accuracy": accuracy, "precision": precision, "recall": recall, "Y_test": Y_test, "y_pred": y_pred, "labels": knn_model.classes_}
 
 async def get_tweets(query, client):
   print(f'{datetime.now()} - Fetching tweets...')
