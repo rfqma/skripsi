@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="PxlFGVZXiDIK046olTQx">
+    <mxGraphModel dx="521" dy="972" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-1" value="&lt;i&gt;START&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="141" y="-59" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-2" value="&lt;i&gt;END&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="141" y="374" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="Hw4GB23gKU0yyaBBAdkF-3" target="Hw4GB23gKU0yyaBBAdkF-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-3" value="Hasil Jarak&lt;div&gt;&lt;i&gt;Nearest Neighbor&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="104.5" y="52" width="173" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="Hw4GB23gKU0yyaBBAdkF-7" target="Hw4GB23gKU0yyaBBAdkF-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-7" value="Membuat Data Sintesis Baru" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="117.5" y="153" width="147" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-8" value="Data Sintesis Baru" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="112" y="266" width="158" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-9" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Hw4GB23gKU0yyaBBAdkF-1" target="Hw4GB23gKU0yyaBBAdkF-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="175" y="224" as="sourcePoint" />
+            <mxPoint x="225" y="174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Hw4GB23gKU0yyaBBAdkF-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="Hw4GB23gKU0yyaBBAdkF-8" target="Hw4GB23gKU0yyaBBAdkF-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

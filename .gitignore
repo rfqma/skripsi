@@ -5,3 +5,7 @@ myenv/
 outputs/preprocessed.csv
 outputs/sentiment.csv
 __pycache__
+models/8020/*.pkl
+models/9010/*.pkl
+models/7030/*.pkl
+models/tf-idf/*.pkl

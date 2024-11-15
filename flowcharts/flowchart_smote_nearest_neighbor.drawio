@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="n1ct2I5khacqFkV6GFsN">
+    <mxGraphModel dx="521" dy="972" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rSjERHj2weM9pJOUe1IL-1" value="&lt;i&gt;START&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="141" y="-59" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-2" value="&lt;i&gt;END&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="141" y="442" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-3" value="Hasil&lt;div&gt;&lt;i&gt;TF-IDF&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="134" y="51" width="114" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="rSjERHj2weM9pJOUe1IL-4" target="rSjERHj2weM9pJOUe1IL-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-4" value="Mencari Jarak&lt;div&gt;&lt;i&gt;Nearest Neighbor&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="125" y="146" width="132" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="rSjERHj2weM9pJOUe1IL-5" target="rSjERHj2weM9pJOUe1IL-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-5" value="Menentukan&lt;div&gt;Nilai &lt;i&gt;k&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="125" y="239" width="132" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-6" value="Hasil Jarak&lt;div&gt;&lt;i&gt;Nearest Neighbor&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="112" y="344" width="158" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-7" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rSjERHj2weM9pJOUe1IL-1" target="rSjERHj2weM9pJOUe1IL-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="175" y="224" as="sourcePoint" />
+            <mxPoint x="225" y="174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-8" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rSjERHj2weM9pJOUe1IL-3" target="rSjERHj2weM9pJOUe1IL-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="175" y="224" as="sourcePoint" />
+            <mxPoint x="218" y="169" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rSjERHj2weM9pJOUe1IL-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="rSjERHj2weM9pJOUe1IL-6" target="rSjERHj2weM9pJOUe1IL-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
