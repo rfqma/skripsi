@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="iubWxSdhvP3VgB0HKdB2">
+    <mxGraphModel dx="1112" dy="1130" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LLiaCHsGHweiII_G6fDe-5" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-1" target="LLiaCHsGHweiII_G6fDe-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-1" value="&lt;i&gt;START&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-100" y="-77" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-2" value="&lt;i&gt;END&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="502.5" y="335" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-3" target="LLiaCHsGHweiII_G6fDe-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-3" value="Hasil&lt;div&gt;&lt;i&gt;Stopwords Removal&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="-141.5" y="24" width="183" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-4" value="Cek Kata dalam&lt;div&gt;Kamus &lt;i&gt;Stemming&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;Sastrawi&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="89" y="24" width="127" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-7" value="Hasil &lt;i&gt;Stemming&lt;/i&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="461" y="238" width="183" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-8" target="LLiaCHsGHweiII_G6fDe-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-14" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="LLiaCHsGHweiII_G6fDe-12">
+          <mxGeometry x="-0.6775" y="2" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-8" target="LLiaCHsGHweiII_G6fDe-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-21" value="FALSE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="LLiaCHsGHweiII_G6fDe-16">
+          <mxGeometry x="-0.5574" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-8" value="Kata Dasar" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="333" y="4.5" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-4" target="LLiaCHsGHweiII_G6fDe-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-10" value="Kamus &lt;i&gt;Stemming&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;" vertex="1" parent="1">
+          <mxGeometry x="96" y="-77" width="113" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-11" value="" style="endArrow=classic;html=1;rounded=0;fontSize=12;startSize=8;endSize=8;curved=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.495;exitY=0.907;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-10" target="LLiaCHsGHweiII_G6fDe-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="178" as="sourcePoint" />
+            <mxPoint x="200" y="128" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-7" target="LLiaCHsGHweiII_G6fDe-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-18" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-15" target="LLiaCHsGHweiII_G6fDe-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-15" value="Hapus&amp;nbsp;&lt;div&gt;&lt;i&gt;Inflection Suffixes&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="227" y="228" width="127" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-20" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-17" target="LLiaCHsGHweiII_G6fDe-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-17" value="Hapus&amp;nbsp;&lt;div&gt;&lt;i&gt;Derivational Suffix&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="46" y="228" width="127" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="LLiaCHsGHweiII_G6fDe-19" target="LLiaCHsGHweiII_G6fDe-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LLiaCHsGHweiII_G6fDe-19" value="Hapus&amp;nbsp;&lt;div&gt;&lt;i&gt;Derivational Prefix&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-124" y="228" width="127" height="61" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

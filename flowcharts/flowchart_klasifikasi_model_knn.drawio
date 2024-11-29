@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="ufr50xpVayyBxZNt1NIA">
+    <mxGraphModel dx="712" dy="1187" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-8" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-1" target="WAXYkq2t2KDVgRnFWpy9-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-1" value="&lt;i&gt;START&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="37" y="-345" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-2" value="&lt;i&gt;END&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="37" y="168" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-3" target="WAXYkq2t2KDVgRnFWpy9-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-3" value="Hasil&lt;div&gt;&lt;i&gt;SMOTE&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="31.5" y="-262" width="111" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-4" target="WAXYkq2t2KDVgRnFWpy9-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-4" value="Kalkulasi Jarak&lt;div&gt;dengan &lt;i&gt;Cosine&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;Similarity&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="28.5" y="-175" width="117" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-5" target="WAXYkq2t2KDVgRnFWpy9-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-5" value="Menentukan tetangga terdekat" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="28.5" y="-90" width="117" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-6" target="WAXYkq2t2KDVgRnFWpy9-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-6" value="Penentuan kelas data uji" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="28.5" y="-4" width="117" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-7" value="Hasil&lt;div&gt;Klasifikasi&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="31.5" y="81" width="111" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WAXYkq2t2KDVgRnFWpy9-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="WAXYkq2t2KDVgRnFWpy9-7" target="WAXYkq2t2KDVgRnFWpy9-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

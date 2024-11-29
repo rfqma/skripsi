@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="u_DfnP1SvC1E8NIF89Vb">
+    <mxGraphModel dx="1218" dy="1294" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-1" target="r0pPnqGDMyMbdlpLoSNq-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-1" value="&lt;i&gt;START&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="-26" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-2" value="&lt;i&gt;END&lt;/i&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="159" y="542" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-7" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-3" target="r0pPnqGDMyMbdlpLoSNq-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-3" value="Hasil&lt;div&gt;&lt;i&gt;Negation Handling&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="-78.75" y="77" width="167.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-4" value="Cek Kata dalam&lt;div&gt;Kamus &lt;i&gt;Stopwords&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-55.5" y="180" width="121" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-5" target="r0pPnqGDMyMbdlpLoSNq-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-11" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="r0pPnqGDMyMbdlpLoSNq-10">
+          <mxGeometry x="-0.2937" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-5" target="r0pPnqGDMyMbdlpLoSNq-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="343" y="211" />
+              <mxPoint x="343" y="462" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-16" value="FALSE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" vertex="1" connectable="0" parent="r0pPnqGDMyMbdlpLoSNq-15">
+          <mxGeometry x="-0.1892" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-5" value="Ada" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="159" y="161" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-8" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-4" target="r0pPnqGDMyMbdlpLoSNq-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-9" target="r0pPnqGDMyMbdlpLoSNq-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-9" value="Hapus Kata" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="148.5" y="323" width="121" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-12" value="Hasil&lt;div&gt;&lt;i&gt;Stopwords Removal&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="1">
+          <mxGeometry x="120.5" y="432" width="177" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r0pPnqGDMyMbdlpLoSNq-14" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="r0pPnqGDMyMbdlpLoSNq-12" target="r0pPnqGDMyMbdlpLoSNq-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
