@@ -191,6 +191,7 @@ def get_model_evaluation(size_test, ratio):
   accuracy = accuracy_score(Y_test, y_pred)
   precision = precision_score(Y_test, y_pred, average='weighted')
   recall = recall_score(Y_test, y_pred, average='weighted')
+  
   return {"accuracy": accuracy, "precision": precision, "recall": recall, "Y_test": Y_test, "y_pred": y_pred, "labels": knn_model.classes_}
 
 async def get_tweets(query, client):

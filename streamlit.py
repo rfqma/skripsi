@@ -86,78 +86,30 @@ if st.session_state.page == "Dataset":
 
 if st.session_state.page == "Evaluasi":
   st.title('Evaluasi')
-  st.text('Evaluasi model algoritma klasifikasi KNN')
-  eval = st.selectbox('Pilih parameter:', ['90:10', '80:20', '70:30'])
+  st.text('Evaluasi model algoritma klasifikasi KNN k=1, 80:20')
 
-  if eval == '90:10':
-    __json = stfunc.get_model_evaluation(0.1, "90:10")
-    st.write(__json)
-    acc = __json['accuracy'] * 100
-    pre = __json['precision'] * 100
-    rec = __json['recall'] * 100
+  __json = stfunc.get_model_evaluation(0.2, "80:20")
+  st.write(__json)
+  acc = __json['accuracy'] * 100
+  pre = __json['precision'] * 100
+  rec = __json['recall'] * 100
 
-    st.write('### Metriks')
-    st.write('Accuracy:', f"{acc:.2f}%")
-    st.write('Precision:', f"{pre:.2f}%")
-    st.write('Recall:', f"{rec:.2f}%")
-    metrics_df = pd.DataFrame({
-      'Metric': ['Accuracy', 'Precision', 'Recall'],
-      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
-    })
+  st.write('### Metriks')
+  st.write('Accuracy:', f"{acc:.2f}%")
+  st.write('Precision:', f"{pre:.2f}%")
+  st.write('Recall:', f"{rec:.2f}%")
+  metrics_df = pd.DataFrame({
+    'Metric': ['Accuracy', 'Precision', 'Recall'],
+    'Score': [__json['accuracy'], __json['precision'], __json['recall']]
+  })
 
-    st.bar_chart(metrics_df.set_index('Metric'))
-    st.write('### Confusion Matrix')
-    cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
-    disp.plot()
-    plt.title(f"Confusion Matrix for 90:10")
-    st.pyplot(plt)
-  elif eval == '80:20':
-    __json = stfunc.get_model_evaluation(0.2, "80:20")
-    st.write(__json)
-    acc = __json['accuracy'] * 100
-    pre = __json['precision'] * 100
-    rec = __json['recall'] * 100
-
-    st.write('### Metriks')
-    st.write('Accuracy:', f"{acc:.2f}%")
-    st.write('Precision:', f"{pre:.2f}%")
-    st.write('Recall:', f"{rec:.2f}%")
-    metrics_df = pd.DataFrame({
-      'Metric': ['Accuracy', 'Precision', 'Recall'],
-      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
-    })
-
-    st.bar_chart(metrics_df.set_index('Metric'))
-    st.write('### Confusion Matrix')
-    cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
-    disp.plot()
-    plt.title(f"Confusion Matrix for 80:20")
-    st.pyplot(plt)
-  elif eval == '70:30':
-    __json = stfunc.get_model_evaluation(0.3, "70:30")
-    st.write(__json)
-    acc = __json['accuracy'] * 100
-    pre = __json['precision'] * 100
-    rec = __json['recall'] * 100
-
-    st.write('### Metriks')
-    st.write('Accuracy:', f"{acc:.2f}%")
-    st.write('Precision:', f"{pre:.2f}%")
-    st.write('Recall:', f"{rec:.2f}%")
-    metrics_df = pd.DataFrame({
-      'Metric': ['Accuracy', 'Precision', 'Recall'],
-      'Score': [__json['accuracy'], __json['precision'], __json['recall']]
-    })
-
-    st.bar_chart(metrics_df.set_index('Metric'))
-    st.write('### Confusion Matrix')
-    cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
-    disp.plot()
-    plt.title(f"Confusion Matrix for 70:30")
-    st.pyplot(plt)
+  st.bar_chart(metrics_df.set_index('Metric'))
+  st.write('### Confusion Matrix')
+  cm = confusion_matrix(__json['Y_test'], __json['y_pred'], labels=__json['labels'])
+  disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=__json['labels'])
+  disp.plot()
+  plt.title(f"Confusion Matrix for 80:20")
+  st.pyplot(plt)
 
 if st.session_state.page == "Sampel Tweet":
   st.title('Sampel Tweet')
