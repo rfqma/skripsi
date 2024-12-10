@@ -64,7 +64,9 @@ if st.session_state.page == "Prediksi":
 
       # predict sentiment
       sentiment = knn_model.predict(vectorized_text)[0]
+      sentiment_proba = knn_model.predict_proba(vectorized_text)[0]
       st.write(f'Sentimen dari kalimat yang dimasukkan: **{sentiment}**')
+      st.write(f'Probabilitas sentimen: **{sentiment_proba}**')
     else:
       st.write('Anda belum memasukkan kalimat.')
 
