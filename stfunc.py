@@ -234,9 +234,9 @@ def call_get_tweets(query):
   return pd.DataFrame(tweets)
 
 def get_sentiment(text):
-  neg = sia_inset_neg.polarity_scores(text)["compound"]
-  pos = sia_inset_pos.polarity_scores(text)["compound"]
-  inset_compound_score = neg + pos
+  neg = sia_inset_neg.polarity_scores(text)
+  pos = sia_inset_pos.polarity_scores(text)
+  inset_compound_score = neg["compound"] + pos["compound"]
   if inset_compound_score > 0:
     return {"sentiment": "positif", "compound_score": inset_compound_score, "positive_score": pos, "negative_score": neg}
   elif inset_compound_score < 0:
