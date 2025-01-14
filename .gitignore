@@ -4,6 +4,8 @@ venv/
 myenv/
 outputs/preprocessed.csv
 outputs/sentiment.csv
+outputs/X_tfidf.csv
+outputs/X_smote.csv
 __pycache__
 models/8020/*.pkl
 models/9010/*.pkl

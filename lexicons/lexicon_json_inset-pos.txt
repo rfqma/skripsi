@@ -1397,6 +1397,7 @@
 "kebaikan": 4,
 "menyempurnakan": 3,
 "majubersama": 3,
+"maju": 3,
 "oportunitas": 3,
 "dialog": 1,
 "standardisasi": 2,
